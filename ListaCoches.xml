@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<coches>
+    <listaCoches>
+        <fechaCreacion>08/01/2021</fechaCreacion>
+        <marca>BMW</marca>
+        <modelo>M4 COMPETITION</modelo>
+        <numBastidor>17389F</numBastidor>
+        <numPuertas>3</numPuertas>
+        <precio>104000.0</precio>
+    </listaCoches>
+    <listaCoches>
+        <fechaCreacion>12/11/2018</fechaCreacion>
+        <marca>AUDI</marca>
+        <modelo>RS6</modelo>
+        <numBastidor>43155G</numBastidor>
+        <numPuertas>5</numPuertas>
+        <precio>615000.0</precio>
+    </listaCoches>
+    <listaCoches>
+        <fechaCreacion>29/10/2016</fechaCreacion>
+        <marca>MERCEDES</marca>
+        <modelo>Clase C AMG</modelo>
+        <numBastidor>98428M</numBastidor>
+        <numPuertas>5</numPuertas>
+        <precio>120000.0</precio>
+    </listaCoches>
+</coches>
