@@ -76,4 +76,8 @@ public class Coche {
         r += "Modelo: " + modelo;
         return r;
     }
+    public String precioToString(){
+       String r = "Precio: " + precio;
+       return r;
+    }
 }

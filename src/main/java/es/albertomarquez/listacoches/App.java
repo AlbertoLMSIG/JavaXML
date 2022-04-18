@@ -1,17 +1,19 @@
 package es.albertomarquez.listacoches;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
     Pane paneRoot;
-    int cocheActual;
+    int cocheActual = 0;
     TextArea textArea;
     
     @Override
@@ -63,6 +65,10 @@ public class App extends Application {
             UtilXML.guardarDatosXML(stage,coches);
         });
         
+        HBox anteriorSiguiente = new HBox(200);
+        anteriorSiguiente.setAlignment(Pos.CENTER);
+        paneRoot.getChildren().add(anteriorSiguiente);
+        
         //CREACION BOTON IMPORTAR XML
         Button boton2 = new Button("Importar XML"); 
         boton2.setLayoutX(400);
@@ -76,6 +82,18 @@ public class App extends Application {
             coches.fusionarCochess(cochesImport);
         });
            
+        Label labelMarca = new Label();
+        labelMarca.setLayoutX(100);
+        labelMarca.setLayoutY(200);
+        Label labelModelo = new Label();
+        Label labelNumPuertas = new Label();
+        Label labelPrecio = new Label();
+        
+        paneRoot.getChildren().add(labelMarca);
+        paneRoot.getChildren().add(labelModelo);
+        paneRoot.getChildren().add(labelPrecio);
+        
+        Coche coche = coches.getListaCoches().get(cocheActual);
       
         //CREACION BOTON SIGUIENTE
         Button botonSiguiente = new Button("Siguiente"); 
@@ -84,8 +102,11 @@ public class App extends Application {
         paneRoot.getChildren().add(botonSiguiente);
         botonSiguiente.setOnAction((t) -> { 
             cocheActual++;
+            System.out.println(cocheActual);
             try {
-                textArea.setText(coches.getListaCoches().get(cocheActual).toString());
+                labelMarca.setText(coches.getListaCoches().get(cocheActual).getMarca());
+                labelModelo.setText(coches.getListaCoches().get(cocheActual).getModelo());
+                labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString());
             } catch (Exception ex){}
          });
         //CREACION BOTON ANTERIOR
@@ -95,9 +116,12 @@ public class App extends Application {
         paneRoot.getChildren().add(botonAnterior);
         botonAnterior.setOnAction((t) -> { 
             cocheActual--;
-             //textArea.setText(coches.getListaCoches().get(cocheActual));
-         
-            
+            System.out.println(cocheActual);
+            try {
+                labelMarca.setText(coches.getListaCoches().get(cocheActual).getMarca());
+                labelModelo.setText(coches.getListaCoches().get(cocheActual).getModelo());
+                labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString());
+            } catch (Exception ex){} 
          });
     }
     
