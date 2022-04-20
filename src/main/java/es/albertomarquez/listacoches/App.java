@@ -55,6 +55,18 @@ public class App extends Application {
         coches.getListaCoches().add(coche1);
         coches.getListaCoches().add(coche2);
         coches.getListaCoches().add(coche3);
+        Label labelMarca = new Label();
+        labelMarca.setLayoutX(100);
+        labelMarca.setLayoutY(200);
+        Label labelModelo = new Label();
+        labelModelo.setLayoutX(100);
+        labelModelo.setLayoutY(220);
+        Label labelNumPuertas = new Label();
+        labelNumPuertas.setLayoutX(100);
+        labelNumPuertas.setLayoutY(240);
+        Label labelPrecio = new Label();
+        labelPrecio.setLayoutX(100);
+        labelPrecio.setLayoutY(260);
         
          //CREACION DE BOTON GUARDAR XML
         Button boton = new Button("Guardar XML");
@@ -65,9 +77,6 @@ public class App extends Application {
             UtilXML.guardarDatosXML(stage,coches);
         });
         
-        HBox anteriorSiguiente = new HBox(200);
-        anteriorSiguiente.setAlignment(Pos.CENTER);
-        paneRoot.getChildren().add(anteriorSiguiente);
         
         //CREACION BOTON IMPORTAR XML
         Button boton2 = new Button("Importar XML"); 
@@ -80,17 +89,17 @@ public class App extends Application {
             //System.out.println(cochesImport.getListaCoches().size());
             System.out.println("Has pulsado el botón importar");
             coches.fusionarCochess(cochesImport);
+            labelMarca.setText("Marca: "+ coches.getListaCoches().get(cocheActual).getMarca());
+            labelModelo.setText("Modelo: "+coches.getListaCoches().get(cocheActual).getModelo());
+            labelNumPuertas.setText(coches.getListaCoches().get(cocheActual).puertasToString());
+            labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString() + "€");
         });
            
-        Label labelMarca = new Label();
-        labelMarca.setLayoutX(100);
-        labelMarca.setLayoutY(200);
-        Label labelModelo = new Label();
-        Label labelNumPuertas = new Label();
-        Label labelPrecio = new Label();
+        
         
         paneRoot.getChildren().add(labelMarca);
         paneRoot.getChildren().add(labelModelo);
+         paneRoot.getChildren().add(labelNumPuertas);
         paneRoot.getChildren().add(labelPrecio);
         
         Coche coche = coches.getListaCoches().get(cocheActual);
@@ -102,25 +111,31 @@ public class App extends Application {
         paneRoot.getChildren().add(botonSiguiente);
         botonSiguiente.setOnAction((t) -> { 
             cocheActual++;
-            System.out.println(cocheActual);
+             if(cocheActual >= coches.getListaCoches().size()) {
+                cocheActual = 0;
+            }
             try {
-                labelMarca.setText(coches.getListaCoches().get(cocheActual).getMarca());
-                labelModelo.setText(coches.getListaCoches().get(cocheActual).getModelo());
-                labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString());
+                labelMarca.setText("Marca: "+ coches.getListaCoches().get(cocheActual).getMarca());
+                labelModelo.setText("Modelo: "+coches.getListaCoches().get(cocheActual).getModelo());
+                labelNumPuertas.setText(coches.getListaCoches().get(cocheActual).puertasToString());
+                labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString() + "€");
             } catch (Exception ex){}
          });
         //CREACION BOTON ANTERIOR
         Button botonAnterior = new Button("Anterior"); 
         botonAnterior.setLayoutX(350);
-        botonAnterior.setLayoutY(150);
+        botonAnterior.setLayoutY(150); 
         paneRoot.getChildren().add(botonAnterior);
         botonAnterior.setOnAction((t) -> { 
             cocheActual--;
-            System.out.println(cocheActual);
+            if(cocheActual < 0) {
+                cocheActual = coches.getListaCoches().size()-1;
+            }
             try {
-                labelMarca.setText(coches.getListaCoches().get(cocheActual).getMarca());
-                labelModelo.setText(coches.getListaCoches().get(cocheActual).getModelo());
-                labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString());
+                labelMarca.setText("Marca: "+ coches.getListaCoches().get(cocheActual).getMarca());
+                labelModelo.setText("Modelo: "+coches.getListaCoches().get(cocheActual).getModelo());
+                labelNumPuertas.setText(coches.getListaCoches().get(cocheActual).puertasToString());
+                labelPrecio.setText(coches.getListaCoches().get(cocheActual).precioToString() + "€");
             } catch (Exception ex){} 
          });
     }

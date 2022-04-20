@@ -80,4 +80,9 @@ public class Coche {
        String r = "Precio: " + precio;
        return r;
     }
+    
+     public String puertasToString(){
+       String a = "Puertas: " + numPuertas;
+       return a;
+    }
 }
