@@ -17,8 +17,6 @@ public class UtilXML {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Guardar XML en");
                 File fileListaCoches = fileChooser.showSaveDialog(stage);
-                
-                //File fileListaCoches = new File("Coches.xml");
                 contexto = JAXBContext.newInstance(Coches.class);
                 Marshaller marshaller = contexto.createMarshaller();
                 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
@@ -34,13 +32,10 @@ public class UtilXML {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Importar XML");
                 File fileListaCoches = fileChooser.showOpenDialog(stage);
-                
                 JAXBContext contexto = JAXBContext.newInstance(Coches.class);
                 Unmarshaller unmarshaller = contexto.createUnmarshaller(); 
-                
                 Coches coches = new Coches();
-                coches = (Coches)unmarshaller.unmarshal(fileListaCoches);
-                
+                coches = (Coches)unmarshaller.unmarshal(fileListaCoches);        
                 return coches;
                 
             } catch (JAXBException ex) {
